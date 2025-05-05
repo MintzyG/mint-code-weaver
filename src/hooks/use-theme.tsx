@@ -8,6 +8,11 @@ export function useTheme() {
     () => (localStorage.getItem("theme") as Theme) || "system"
   );
 
+  const updateTheme = (newTheme: Theme) => {
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
   useEffect(() => {
     const root = window.document.documentElement;
     
@@ -24,8 +29,7 @@ export function useTheme() {
     }
     
     root.classList.add(theme);
-    localStorage.setItem("theme", theme);
   }, [theme]);
 
-  return { theme, setTheme };
+  return { theme, setTheme: updateTheme };
 }

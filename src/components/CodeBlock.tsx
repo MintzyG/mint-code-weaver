@@ -17,7 +17,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 }) => {
   // Simple syntax highlighting for Mint language
   const highlightSyntax = (code: string) => {
-    // Replace keywords
+    // Replace keywords with spans
     const keywordRegex = /\b(int|float|bool|string|char|path|struct|enum|mut|const|for|if|elif|else|while|match|return|void|static|set|map|type|is|ok|err|nil|true|false|in|_)\b/g;
     const typeRegex = /\b(int|float|bool|string|char|path|User|Color|HttpStatus|Config|Address|Contact)\b/g;
     const commentRegex = /(\/\/.*)|(!\/\/.*)/g;
@@ -26,7 +26,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
     const operatorRegex = /(\+|-|\*|\/|%|=|==|!=|>|<|>=|<=|&&|\|\||!|\?|\|>|\|\|>)/g;
     const functionRegex = /\b([a-zA-Z_][a-zA-Z0-9_]*)\s*\(/g;
     
-    let highlighted = code
+    // Apply syntax highlighting
+    return code
       .replace(commentRegex, '<span class="text-code-comment">$&</span>')
       .replace(stringRegex, '<span class="text-code-string">$&</span>')
       .replace(numberRegex, '<span class="text-code-number">$&</span>')
@@ -34,13 +35,11 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
       .replace(typeRegex, '<span class="text-code-type">$&</span>')
       .replace(operatorRegex, '<span class="text-code-operator">$&</span>')
       .replace(functionRegex, '<span class="text-code-function">$1</span>(');
-    
-    return highlighted;
   };
 
   return (
-    <div className={cn("code-container my-6", className)}>
-      <div className="code-window-header">
+    <div className={cn("code-container my-6 overflow-hidden", className)}>
+      <div className="code-window-header flex justify-between items-center">
         <div className="code-dots">
           <span className="code-dot code-dot-red"></span>
           <span className="code-dot code-dot-yellow"></span>
@@ -49,11 +48,13 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
         {title && <span className="text-sm font-mono">{title}</span>}
         <span className="text-xs uppercase tracking-wide">{language}</span>
       </div>
-      <div className="code-content">
-        <pre 
-          className="bg-transparent" 
-          dangerouslySetInnerHTML={{ __html: highlightSyntax(children) }} 
-        />
+      <div className="code-content dark:bg-gray-900 border-t-0">
+        <pre className="bg-transparent overflow-x-auto p-4">
+          <code 
+            className="text-sm font-mono"
+            dangerouslySetInnerHTML={{ __html: highlightSyntax(children) }} 
+          />
+        </pre>
       </div>
     </div>
   );

@@ -21,13 +21,13 @@ const DocsSidebar: React.FC = () => {
   const { section = 'basics' } = useParams<{ section?: string }>();
   
   const menuItems = [
-    { id: 'basics', label: 'Basics & Syntax', icon: <FileCode className="h-4 w-4" /> },
-    { id: 'data-types', label: 'Data Types', icon: <Type className="h-4 w-4" /> },
-    { id: 'control-flow', label: 'Control Flow', icon: <FileType className="h-4 w-4" /> },
-    { id: 'functions', label: 'Functions', icon: <Code className="h-4 w-4" /> },
-    { id: 'error-handling', label: 'Error Handling', icon: <Shield className="h-4 w-4" /> },
-    { id: 'advanced', label: 'Advanced Features', icon: <Settings className="h-4 w-4" /> },
-    { id: 'annotations', label: 'Annotations', icon: <Key className="h-4 w-4" /> }
+    { id: 'basics', label: 'Basics & Syntax', icon: <FileCode className="h-4 w-4 text-mint-primary" /> },
+    { id: 'data-types', label: 'Data Types', icon: <Type className="h-4 w-4 text-mint-primary" /> },
+    { id: 'control-flow', label: 'Control Flow', icon: <FileType className="h-4 w-4 text-mint-primary" /> },
+    { id: 'functions', label: 'Functions', icon: <Code className="h-4 w-4 text-mint-primary" /> },
+    { id: 'error-handling', label: 'Error Handling', icon: <Shield className="h-4 w-4 text-mint-primary" /> },
+    { id: 'advanced', label: 'Advanced Features', icon: <Settings className="h-4 w-4 text-mint-primary" /> },
+    { id: 'annotations', label: 'Annotations', icon: <Key className="h-4 w-4 text-mint-primary" /> }
   ];
   
   return (
@@ -37,20 +37,21 @@ const DocsSidebar: React.FC = () => {
           <Book className="h-5 w-5 text-mint-primary" />
           <span className="font-semibold">Mint Docs</span>
         </div>
-        <SidebarTrigger />
+        <SidebarTrigger className="text-mint-primary hover:text-mint-secondary" />
       </SidebarHeader>
       
       <SidebarSeparator />
       
       <SidebarContent className="p-2">
         <SidebarGroup>
-          <SidebarGroupLabel>Documentation</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-mint-primary/90 font-medium">Documentation</SidebarGroupLabel>
           <SidebarMenu>
             {menuItems.map((item) => (
               <SidebarMenuItem key={item.id}>
                 <SidebarMenuButton 
                   isActive={section === item.id}
                   onClick={() => navigate(`/docs/${item.id}`)}
+                  className={section === item.id ? "bg-mint-primary/10 text-mint-primary" : "hover:text-mint-primary"}
                 >
                   {item.icon}
                   <span>{item.label}</span>
