@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -65,10 +64,10 @@ export default {
 				},
 				mint: {
           dark: '#1A1F2C',
-          primary: '#6E59A5',
-          secondary: '#7E69AB',
-          tertiary: '#9b87f5',
-          light: '#D6BCFA',
+          primary: '#4ade80',    // Changed to a minty green color
+          secondary: '#86efac',  // Lighter mint green
+          tertiary: '#bbf7d0',   // Even lighter mint green
+          light: '#dcfce7',      // Very light mint green
         },
         code: {
           keyword: '#F97316',    // Orange
@@ -134,4 +133,3 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-

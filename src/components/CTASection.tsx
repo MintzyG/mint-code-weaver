@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const CTASection: React.FC = () => {
   return (
@@ -17,7 +18,7 @@ const CTASection: React.FC = () => {
             Get Started
           </Button>
           <Button variant="outline" className="text-white border-white hover:bg-white/20">
-            View on GitHub
+            <Link to="/docs">View Documentation</Link>
           </Button>
         </div>
       </div>

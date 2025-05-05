@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
             The <span className="text-mint-primary">Mint</span> Programming Language
           </h1>
           
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl">
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl">
             A weird (in a good way!) mid-level language that feels high-level
             while giving you the power to go as low as you need.
           </p>
@@ -33,12 +33,12 @@ const Hero: React.FC = () => {
             </Button>
           </div>
           
-          <div className="mt-12 p-4 bg-gray-50 rounded-lg border border-gray-200 w-full">
-            <pre className="text-sm text-gray-700 whitespace-pre overflow-x-auto">
+          <div className="mt-12 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 w-full">
+            <pre className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre overflow-x-auto">
               <code>
                 <span className="text-code-comment">// Start high-level</span>{"\n"}
-                <span className="text-code-keyword">calculateArea</span>(width <span className="text-code-type">float</span>, height <span className="text-code-type">float</span>) <span className="text-code-operator">-></span> <span className="text-code-type">float</span> {"{"}{"\n"}
-                {"  "}<span className="text-code-keyword">return</span> width <span className="text-code-operator">*</span> height{"\n"}
+                <span className="text-code-keyword">calculateArea</span>(<span className="text-code-type">float</span> width, <span className="text-code-type">float</span> height) <span className="text-code-operator">-&gt;</span> <span className="text-code-type">float</span> {"{"}
+                {"\n"}{"  "}<span className="text-code-keyword">return</span> width <span className="text-code-operator">*</span> height{"\n"}
                 {"}"}
               </code>
             </pre>
