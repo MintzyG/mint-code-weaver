@@ -1,6 +1,9 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-clike';
+import 'prismjs/themes/prism-tomorrow.css';
 
 interface CodeBlockProps {
   language?: string;
@@ -9,33 +12,53 @@ interface CodeBlockProps {
   className?: string;
 }
 
+// Define custom Mint language for Prism
+const defineMintLanguage = () => {
+  if (Prism.languages.mint) return;
+  
+  Prism.languages.mint = {
+    'comment': [
+      {
+        pattern: /\/\/.*|\/\*[\s\S]*?\*\//,
+        greedy: true
+      },
+      {
+        pattern: /!\/{2}.*|!\/{1}\*[\s\S]*?\*\//,
+        greedy: true,
+        alias: 'doc-comment',
+        className: 'doc-comment'
+      }
+    ],
+    'string': {
+      pattern: /"(?:\\.|[^\\"\n])*"/,
+      greedy: true
+    },
+    'number': /\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
+    'keyword': /\b(?:int|float|bool|string|char|path|struct|enum|mut|const|for|if|elif|else|while|match|return|void|static|set|map|type|is|ok|err|nil|true|false|in|_)\b/,
+    'type': /\b(?:int|float|bool|string|char|path|User|Color|HttpStatus|Config|Address|Contact)\b/,
+    'function': /\b([a-zA-Z_][a-zA-Z0-9_]*)\s*\(/,
+    'operator': /(\+|-|\*|\/|%|=|==|!=|>|<|>=|<=|&&|\|\||!|\?|\|>|\|\|>)/,
+    'punctuation': /[{}[\];(),.:]/
+  };
+};
+
 const CodeBlock: React.FC<CodeBlockProps> = ({
   language = 'mint',
   title,
   children,
   className,
 }) => {
-  // Simple syntax highlighting for Mint language
-  const highlightSyntax = (code: string) => {
-    // Replace keywords with spans
-    const keywordRegex = /\b(int|float|bool|string|char|path|struct|enum|mut|const|for|if|elif|else|while|match|return|void|static|set|map|type|is|ok|err|nil|true|false|in|_)\b/g;
-    const typeRegex = /\b(int|float|bool|string|char|path|User|Color|HttpStatus|Config|Address|Contact)\b/g;
-    const commentRegex = /(\/\/.*)|(!\/\/.*)/g;
-    const stringRegex = /"([^"\\]*(\\.[^"\\]*)*)"/g;
-    const numberRegex = /\b(\d+(\.\d+)?)\b/g;
-    const operatorRegex = /(\+|-|\*|\/|%|=|==|!=|>|<|>=|<=|&&|\|\||!|\?|\|>|\|\|>)/g;
-    const functionRegex = /\b([a-zA-Z_][a-zA-Z0-9_]*)\s*\(/g;
+  const codeRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // Define Mint language for Prism
+    defineMintLanguage();
     
-    // Apply syntax highlighting
-    return code
-      .replace(commentRegex, '<span class="text-code-comment">$&</span>')
-      .replace(stringRegex, '<span class="text-code-string">$&</span>')
-      .replace(numberRegex, '<span class="text-code-number">$&</span>')
-      .replace(keywordRegex, '<span class="text-code-keyword">$&</span>')
-      .replace(typeRegex, '<span class="text-code-type">$&</span>')
-      .replace(operatorRegex, '<span class="text-code-operator">$&</span>')
-      .replace(functionRegex, '<span class="text-code-function">$1</span>(');
-  };
+    // Highlight code with Prism
+    if (codeRef.current) {
+      Prism.highlightElement(codeRef.current);
+    }
+  }, [children, language]);
 
   return (
     <div className={cn("code-container my-6 overflow-hidden", className)}>
@@ -51,9 +74,11 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
       <div className="code-content dark:bg-gray-900 border-t-0">
         <pre className="bg-transparent overflow-x-auto p-4">
           <code 
-            className="text-sm font-mono"
-            dangerouslySetInnerHTML={{ __html: highlightSyntax(children) }} 
-          />
+            ref={codeRef}
+            className={`text-sm font-mono language-${language}`}
+          >
+            {children}
+          </code>
         </pre>
       </div>
     </div>

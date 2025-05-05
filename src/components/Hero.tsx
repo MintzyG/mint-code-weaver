@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import CodeBlock from './CodeBlock';
 
 const Hero: React.FC = () => {
   return (
@@ -33,15 +34,13 @@ const Hero: React.FC = () => {
             </Button>
           </div>
           
-          <div className="mt-12 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 w-full">
-            <pre className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre overflow-x-auto">
-              <code>
-                <span className="text-code-comment">// Start high-level</span>{"\n"}
-                <span className="text-code-keyword">calculateArea</span>(<span className="text-code-type">float</span> width, <span className="text-code-type">float</span> height) <span className="text-code-operator">-&gt;</span> <span className="text-code-type">float</span> {"{"}
-                {"\n"}{"  "}<span className="text-code-keyword">return</span> width <span className="text-code-operator">*</span> height{"\n"}
-                {"}"}
-              </code>
-            </pre>
+          <div className="mt-12 w-full">
+            <CodeBlock>
+{`// Start high-level
+calculateArea(float width, float height) -> float {
+  return width * height
+}`}
+            </CodeBlock>
           </div>
         </div>
       </div>

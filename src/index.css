@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -134,35 +135,81 @@
     @apply bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 overflow-x-auto;
   }
 
-  .text-code-keyword {
-    @apply text-orange-500 dark:text-orange-400;
-  }
-  
-  .text-code-function {
-    @apply text-blue-600 dark:text-blue-400;
-  }
-  
-  .text-code-string {
-    @apply text-emerald-600 dark:text-emerald-400;
-  }
-  
-  .text-code-number {
-    @apply text-purple-600 dark:text-purple-400;
-  }
-  
-  .text-code-comment {
+  /* Custom styling for Prism syntax highlighting */
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
     @apply text-slate-500 dark:text-slate-400;
   }
-  
-  .text-code-type {
-    @apply text-pink-600 dark:text-pink-400;
+
+  .token.doc-comment {
+    @apply text-emerald-700 dark:text-emerald-500 font-semibold;
   }
-  
-  .text-code-variable {
+
+  .token.punctuation {
+    @apply text-slate-700 dark:text-slate-300;
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol {
+    @apply text-purple-600 dark:text-purple-400;
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin {
+    @apply text-emerald-600 dark:text-emerald-400;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url {
+    @apply text-fuchsia-600 dark:text-fuchsia-400;
+  }
+
+  .token.keyword {
+    @apply text-orange-500 dark:text-orange-400;
+  }
+
+  .token.function {
+    @apply text-blue-600 dark:text-blue-400;
+  }
+
+  .token.atrule,
+  .token.attr-value {
     @apply text-amber-600 dark:text-amber-400;
   }
+
+  .token.regex,
+  .token.important {
+    @apply text-red-600 dark:text-red-400;
+  }
+
+  .token.variable {
+    @apply text-amber-600 dark:text-amber-400;
+  }
+
+  .token.important,
+  .token.bold {
+    @apply font-bold;
+  }
+
+  .token.italic {
+    @apply italic;
+  }
+
+  .token.entity {
+    @apply cursor-help;
+  }
   
-  .text-code-operator {
-    @apply text-fuchsia-600 dark:text-fuchsia-400;
+  .token.type {
+    @apply text-pink-600 dark:text-pink-400;
   }
 }

@@ -17,9 +17,9 @@ const Documentation: React.FC = () => {
       <SidebarProvider>
         <main className="flex-1 flex w-full">
           <DocsSidebar />
-          <div className="flex-1 p-4 md:p-8 overflow-auto relative">
-            <div className="absolute top-0 left-0 z-10 p-2">
-              <SidebarTrigger className="text-mint-primary bg-background/70 backdrop-blur hover:bg-background/90" />
+          <div className="flex-1 p-4 md:p-8 overflow-auto">
+            <div className="sticky top-0 z-10 p-2 mb-4 bg-background/70 backdrop-blur-sm">
+              <SidebarTrigger className="text-mint-primary border border-mint-primary/30 bg-background/70 backdrop-blur hover:bg-mint-primary/10" />
             </div>
             <DocsContent section={section} />
           </div>
