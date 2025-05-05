@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import CodeBlock from './CodeBlock';
+import Terminal from './Terminal';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const CodeExamples: React.FC = () => {
@@ -73,16 +73,16 @@ directMemoryAccess(address uintptr, size int) -> []byte {
               <TabsTrigger value="lowLevel">Low-Level</TabsTrigger>
             </TabsList>
             <TabsContent value="basic">
-              <CodeBlock title="Basic Syntax & Pattern Matching">{examples.basic}</CodeBlock>
+              <Terminal title="Basic Syntax & Pattern Matching">{examples.basic}</Terminal>
             </TabsContent>
             <TabsContent value="paths">
-              <CodeBlock title="Native Path Type">{examples.paths}</CodeBlock>
+              <Terminal title="Native Path Type">{examples.paths}</Terminal>
             </TabsContent>
             <TabsContent value="errorHandling">
-              <CodeBlock title="Error Handling & Pipe Operators">{examples.errorHandling}</CodeBlock>
+              <Terminal title="Error Handling & Pipe Operators">{examples.errorHandling}</Terminal>
             </TabsContent>
             <TabsContent value="lowLevel">
-              <CodeBlock title="Low-Level Control">{examples.lowLevel}</CodeBlock>
+              <Terminal title="Low-Level Control">{examples.lowLevel}</Terminal>
             </TabsContent>
           </Tabs>
         </div>

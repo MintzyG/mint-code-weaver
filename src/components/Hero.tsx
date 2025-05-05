@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import CodeBlock from './CodeBlock';
+import Terminal from './Terminal';
 
 const Hero: React.FC = () => {
   return (
@@ -35,12 +35,12 @@ const Hero: React.FC = () => {
           </div>
           
           <div className="mt-12 w-full">
-            <CodeBlock>
+            <Terminal>
 {`// Start high-level
 calculateArea(float width, float height) -> float {
   return width * height
 }`}
-            </CodeBlock>
+            </Terminal>
           </div>
         </div>
       </div>

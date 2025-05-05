@@ -25,8 +25,7 @@ const defineMintLanguage = () => {
       {
         pattern: /!\/{2}.*|!\/{1}\*[\s\S]*?\*\//,
         greedy: true,
-        alias: 'doc-comment',
-        className: 'doc-comment'
+        alias: 'doc-comment'
       }
     ],
     'string': {

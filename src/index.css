@@ -201,10 +201,6 @@
     @apply font-bold;
   }
 
-  .token.italic {
-    @apply italic;
-  }
-
   .token.entity {
     @apply cursor-help;
   }
